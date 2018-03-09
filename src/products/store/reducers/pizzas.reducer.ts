@@ -2,66 +2,36 @@ import { Pizza } from '../../models/pizza.model';
 import * as actions from '../actions/pizzas.actions';
 
 export interface PizzaState {
-    data: Pizza[];
     loaded: boolean;
     loading: boolean;
-    
+    data: Pizza[];
 }
 
  //our reducer binds its initial state object to the store when it's first initialized
 export const initialState: PizzaState = {
-    data: [  
-        {
-        "name": "Blazin' Inferno",
-        "toppings": [
-          {
-            "id": 10,
-            "name": "pepperoni"
-          },
-          {
-            "id": 9,
-            "name": "pepper"
-          },
-          {
-            "id": 3,
-            "name": "basil"
-          },
-          {
-            "id": 4,
-            "name": "chili"
-          },
-          {
-            "id": 7,
-            "name": "olive"
-          },
-          {
-            "id": 2,
-            "name": "bacon"
-          }
-        ],
-        "id": 1
-      }
-    ],
     loaded: false,
-    loading: false
+    loading: false,
+    data: []
 }
 
-export function pizzasReducer(state = initialState, action: actions.PizzasAction) :PizzaState {
+export function pizzasReducer(state = initialState, action: actions.PizzasAction): PizzaState {
 
     switch(action.type) {
-
+        //we'll call this when the component loads [ngOninit]
         case actions.LOAD_PIZZAS: {
             return {
                 ...state, 
                 loading: true,
             }
         }
-
+        //expect to get this action event from the effect if the pizzaService gets us back a successful response from the server
         case actions.LOAD_PIZZAS_SUCCESS: {
+            const data = action.payload;
             return {
                 ...state, 
                 loading: false,
-                loaded: true
+                loaded: true,
+                data
             }
         }
 

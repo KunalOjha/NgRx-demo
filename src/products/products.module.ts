@@ -4,10 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { StoreModule} from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 //grab all of our barrelled reducers (in the productsReducer object) to put into the feature store
-import { productsReducer } from './store'
+import { productsReducer, effects } from './store'
 
 // components
 import * as fromComponents from './components';
@@ -40,8 +41,9 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild(ROUTES),
-    //when the ProductsModule loads, it binds its reducer to the storeModule root object
-    StoreModule.forFeature('products', productsReducer)
+    //when the ProductsModule loads, it binds its productsReducer (comprised of reducers) to the storeModule root object called 'products'
+    StoreModule.forFeature('products', productsReducer),
+    EffectsModule.forFeature(effects)
   ],
   providers: [...fromServices.services],
   declarations: [...fromContainers.containers, ...fromComponents.components],

@@ -40,6 +40,8 @@ export class ProductsComponent implements OnInit {
     //'products' corresponds to the name we gave our feature store (products.module.ts)
     // StoreModule.forFeature('products', productsReducer)
     //we can also pass in a selector to get a specific slice of the state (getAllPizzas)
-    this.pizzas$ = this.store.select(fromStore.gettAllPizzas)
+    this.pizzas$ = this.store.select(fromStore.getAllPizzas)
+  
+    this.store.dispatch(new fromStore.LoadPizzas())
   }
 }

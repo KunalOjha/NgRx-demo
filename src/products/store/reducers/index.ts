@@ -48,6 +48,6 @@ export const getPizzaState = createSelector(
 //we do that here using the get functions defined in our reducer file.
 
 // pizzas.reducer.ts:  export const getPizzas = (state:PizzaState) => state.data;
-export const gettAllPizzas = createSelector(getPizzaState, fromPizzas.getPizzas);
-export const gettAllPizzasLoaded = createSelector(getPizzaState, fromPizzas.getPizzasLoaded);
-export const gettAllPizzasLoading = createSelector(getPizzaState, fromPizzas.getPizzasLoading);
+export const getAllPizzas = createSelector(getPizzaState, fromPizzas.getPizzas);
+export const getAllPizzasLoaded = createSelector(getPizzaState, fromPizzas.getPizzasLoaded);
+export const getAllPizzasLoading = createSelector(getPizzaState, fromPizzas.getPizzasLoading);
